@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Annie Zhou | BASIS 8th Grader</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== 全局 ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --blue-900: #0f2c4c;
+      --blue-700: #1a4f8b;
+      --blue-500: #2f7fd1;
+      --blue-300: #7db8ea;
+      --blue-100: #e8f2fb;
+      --accent: #38bdf8;
+      --accent-soft: #bae6fd;
+      --bg: #ffffff;
+      --bg-alt: #fdf6ee;        /* 暖色背景 */
+      --paper: #fffdf9;
+      --tape: rgba(255, 205, 130, 0.55);
+      --text: #3d3830;
+      --text-light: #8a8278;
+      --border: #f0e2d0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--blue-900);
+      letter-spacing: 0.2px;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== 导航 ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      transition: box-shadow 0.3s;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--blue-700);
+    }
+
+    .nav-links { display: flex; list-style: none; gap: 32px; }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -6px;
+      width: 0; height: 2px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--blue-500); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 24px; height: 2px;
+      background: var(--blue-700);
+      transition: 0.3s;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      padding: 120px 24px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 15%; right: -10%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+      opacity: 0.6;
+      z-index: -1;
+      border-radius: 50%;
+    }
+
+    .hero-content { flex: 1; }
+
+    .hero-tag {
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue-500);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .hero h1 { font-size: 3.2rem; line-height: 1.15; margin-bottom: 20px; }
+
+    .highlight { color: var(--blue-500); position: relative; }
+
+    .highlight::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 6px;
+      width: 100%; height: 10px;
+      background: var(--accent-soft);
+      z-index: -1;
+      border-radius: 4px;
+    }
+
+    .hero-sub { font-size: 1.1rem; color: var(--text-light); margin-bottom: 32px; }
+
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.25s;
+      display: inline-block;
+    }
+
+    .btn-primary { background: var(--blue-700); color: #fff; }
+    .btn-primary:hover {
+      background: var(--blue-500);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(47,127,209,0.25);
+    }
+
+    .btn-outline { border: 2px solid var(--blue-700); color: var(--blue-700); }
+    .btn-outline:hover { background: var(--blue-700); color: #fff; }
+
+    .hero-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border: 2px dashed var(--blue-300);
+      border-radius: 50%;
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .hero-image img {
+      width: 320px; height: 320px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 6px solid #fff;
+      box-shadow: 0 20px 50px rgba(26,79,139,0.18);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== Section 通用 ===== */
+    .section { padding: 100px 0; }
+    .section-alt { background: var(--bg-alt); }
+
+    .section-title {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px; height: 3px;
+      background: var(--accent);
+      margin: 16px auto 0;
+      border-radius: 2px;
+    }
+
+    .section-intro {
+      text-align: center;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto 48px;
+    }
+
+    /* ===== About ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 48px;
+      margin-top: 48px;
+    }
+
+    .about-text p { margin-bottom: 18px; }
+
+    .about-info {
+      background: linear-gradient(135deg, var(--blue-100) 0%, #ffffff 100%);
+      padding: 28px;
+      border-radius: 12px;
+      border-left: 4px solid var(--blue-500);
+    }
+
+    .about-info h3 {
+      margin-bottom: 16px;
+      font-size: 1.2rem;
+      color: var(--blue-700);
+    }
+
+    .about-info ul { list-style: none; }
+    .about-info li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    .about-info li:last-child { border-bottom: none; }
+
+    /* ===== 拍立得轮播 Polaroid Carousel ===== */
+    .polaroid-carousel {
+      position: relative;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 30px 10px 20px;
+    }
+
+    .polaroid-track {
+      position: relative;
+      height: 560px; /* 固定高度容纳拍立得 */
+    }
+
+    .polaroid-slide {
+      position: absolute;
+      top: 0; left: 50%;
+      width: 340px;
+      margin-left: -170px;
+      background: var(--paper);
+      padding: 16px 16px 26px;
+      border-radius: 4px;
+      box-shadow:
+        0 4px 12px rgba(120,100,80,0.12),
+        0 14px 40px rgba(120,100,80,0.18);
+      opacity: 0;
+      transform: translateX(60px) rotate(4deg) scale(0.9);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      pointer-events: none;
+      cursor: pointer;
+    }
+
+    /* 当前显示的拍立得 */
+    .polaroid-slide.active {
+      opacity: 1;
+      transform: translateX(0) rotate(-2deg) scale(1);
+      z-index: 3;
+      pointer-events: auto;
+    }
+
+    /* 后方的两张做叠放效果 */
+    .polaroid-slide.behind-1 {
+      opacity: 0.75;
+      transform: translateX(40px) rotate(6deg) scale(0.9);
+      z-index: 2;
+      pointer-events: auto;
+    }
+
+    .polaroid-slide.behind-2 {
+      opacity: 0.45;
+      transform: translateX(70px) rotate(9deg) scale(0.82);
+      z-index: 1;
+      pointer-events: auto;
+    }
+
+    .polaroid-slide img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      border-radius: 2px;
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    /* 拍立得下方的手写 caption */
+    .polaroid-caption {
+      margin-top: 14px;
+      font-family: 'Caveat', cursive;
+      font-size: 1.5rem;
+      color: #5a5247;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .polaroid-caption small {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-light);
+      margin-top: 2px;
+      letter-spacing: 0.5px;
+    }
+
+    /* 胶带装饰 */
+    .polaroid-slide::before {
+      content: '';
+      position: absolute;
+      top: -14px; left: 50%;
+      width: 90px; height: 28px;
+      margin-left: -45px;
+      background: var(--tape);
+      transform: rotate(-3deg);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+      z-index: 5;
+    }
+
+    /* 左右箭头 */
+    .pc-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--paper);
+      font-size: 1.3rem;
+      color: var(--blue-700);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s;
+      z-index: 20;
+    }
+
+    .pc-btn:hover {
+      background: var(--blue-700);
+      color: #fff;
+      border-color: var(--blue-700);
+    }
+
+    .pc-btn.prev { left: -10px; }
+    .pc-btn.next { right: -10px; }
+
+    /* 圆点 */
+    .pc-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 34px;
+    }
+
+    .pc-dots .dot {
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: #ddd0c0;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .pc-dots .dot.active {
+      background: var(--blue-700);
+      transform: scale(1.3);
+    }
+
+    /* ===== Activities ===== */
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .activity-card {
+      background: #fff;
+      padding: 32px 24px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .activity-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 4px;
+      background: linear-gradient(90deg, var(--blue-500), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .activity-card:hover::before { transform: scaleX(1); }
+
+    .activity-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(47,127,209,0.12);
+      border-color: var(--accent);
+    }
+
+    .activity-icon { font-size: 2.2rem; margin-bottom: 16px; }
+
+    .activity-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--blue-700);
+    }
+
+    .activity-card p {
+      font-size: 0.92rem;
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+
+    .activity-link {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--blue-500);
+      transition: color 0.2s;
+    }
+    .activity-link:hover { color: var(--accent); }
+
+    /* ===== 视频展开 ===== */
+    .video-toggle {
+      margin-top: 8px;
+      padding: 8px 16px;
+      background: var(--blue-100);
+      color: var(--blue-700);
+      border: 1px solid var(--blue-300);
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .video-toggle:hover {
+      background: var(--blue-500);
+      color: #fff;
+      border-color: var(--blue-500);
+    }
+
+    .video-wrapper {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, margin-top 0.4s ease;
+      margin-top: 0;
+    }
+
+    .video-wrapper.active { max-height: 600px; margin-top: 16px; }
+
+    .video-wrapper video {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(15,44,76,0.15);
+      display: block;
+    }
+
+    /* ===== Art Gallery ===== */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      cursor: pointer;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(15,44,76,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(47,127,209,0.15);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .gallery-item:hover img { transform: scale(1.06); }
+
+    .gallery-caption-box { padding: 16px 20px; }
+
+    .gallery-caption-box h4 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: var(--blue-700);
+    }
+
+    .gallery-caption-box p { font-size: 0.85rem; color: var(--text-light); }
+
+    /* ===== Service ===== */
+    .service-list {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .service-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 32px;
+      background: #fff;
+      padding: 28px;
+      border-radius: 14px;
+      border-left: 4px solid var(--blue-500);
+      box-shadow: 0 4px 16px rgba(15,44,76,0.06);
+      transition: all 0.3s;
+    }
+
+    .service-item:hover {
+      transform: translateX(6px);
+      border-left-color: var(--accent);
+      box-shadow: 0 12px 30px rgba(47,127,209,0.12);
+    }
+
+    .service-date { font-weight: 600; color: var(--blue-500); font-size: 0.9rem; }
+
+    .service-content h3 { font-size: 1.2rem; margin-bottom: 6px; color: var(--blue-700); }
+
+    .service-role {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      background: var(--blue-900);
+      color: #fff;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer p { font-size: 0.9rem; margin-bottom: 6px; opacity: 0.9; }
+    .footer a { color: var(--accent); transition: color 0.2s; }
+    .footer a:hover { color: var(--accent-soft); }
+
+    /* ===== Lightbox ===== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15,44,76,0.94);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+
+    .lightbox.active {
+      display: flex;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 10px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px; right: 40px;
+      font-size: 2.5rem;
+      color: #fff;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .lightbox-close:hover { color: var(--accent); }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 100px;
+      }
+      .hero h1 { font-size: 2.4rem; }
+      .hero-buttons { justify-content: center; }
+      .hero-image img { width: 220px; height: 220px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .service-item { grid-template-columns: 1fr; gap: 12px; }
+      .polaroid-slide { width: 280px; margin-left: -140px; }
+      .polaroid-slide img { height: 280px; }
+    }
+
+    @media (max-width: 700px) {
+      .nav-links {
+        position: fixed;
+        top: 64px; right: -100%;
+        flex-direction: column;
+        background: #fff;
+        width: 220px;
+        height: calc(100vh - 64px);
+        padding: 40px 24px;
+        gap: 24px;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.08);
+        transition: right 0.3s;
+      }
+      .nav-links.active { right: 0; }
+      .hamburger { display: flex; }
+      .section { padding: 70px 0; }
+      .section-title { font-size: 1.8rem; }
+      .pc-btn.prev { left: 0; }
+      .pc-btn.next { right: 0; }
+      .polaroid-slide { width: 240px; margin-left: -120px; }
+      .polaroid-slide img { height: 240px; }
+      .polaroid-caption { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== 导航栏 ===== -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo">Annie Zhou</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#academics">Daily Life</a></li>
+          <li><a href="#activities">Activities</a></li>
+          <li><a href="#art">Art</a></li>
+          <li><a href="#service">Service</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== 首页 Hero ===== -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <p class="hero-tag">BASIS International School · 8th Grade</p>
+      <h1>Hi, I'm <span class="highlight">Annie Zhou</span></h1>
+      <p class="hero-sub">
+        A curious learner who finds beauty in art, logic in code,<br />
+        and energy on the tennis court.
+      </p>
+      <div class="hero-buttons">
+        <a href="#about" class="btn btn-primary">Learn More</a>
+        <a href="#art" class="btn btn-outline">View My Art</a>
+        <a href="#piano" class="btn btn-outline">🎹 Piano</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="images/profile.jpg" alt="Annie Zhou" />
+    </div>
+  </section>
+
+  <!-- ===== About Me ===== -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            My name is Annie Zhou, and I am an 8th-grade student at BASIS International School.
+            I love expressing myself in different ways — through colors on a canvas, melodies on the piano,
+            sprints on the tennis court, and logic in code.
+          </p>
+          <p>
+            I especially enjoy combining art and technology, such as creating small animations or
+            interactive projects with programming. I also love teaching younger students how to draw,
+            which has shown me how meaningful it is to share what I know.
+          </p>
+          <p>
+            In high school, I hope to keep exploring art, music, and computer science, and to meet
+            friends from all over the world.
+          </p>
+        </div>
+        <div class="about-info">
+          <h3>Quick Facts</h3>
+          <ul>
+            <li><strong>Name:</strong> Annie Zhou</li>
+            <li><strong>Age:</strong> 13</li>
+            <li><strong>School:</strong> BASIS International School</li>
+            <li><strong>Grade:</strong> 8</li>
+            <li><strong>Languages:</strong> Chinese, English</li>
+            <li><strong>Location:</strong> China</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Daily Life（拍立得手账风轮播）===== -->
+  <section id="academics" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Daily Life</h2>
+      <p class="section-intro">
+        Snapshots of my everyday moments — little things that make life warm and wonderful.
+      </p>
+
+      <div class="polaroid-carousel">
+        <div class="polaroid-track" id="polaroidTrack">
+
+          <div class="polaroid-slide">
+            <img src="images/daily1.jpg" alt="Flower" />
+            <div class="polaroid-caption">Morning light & Hydrangea<small>Morning Walk · 2026 April</Mark></small></div>
+          </div>
+          <div class="polaroid-slide">
+            <img src="images/daily2.jpg" alt="Campus" />
+            <div class="polaroid-caption">Under the Red Sea<small>Traveling in Europe · 2025 July</small></div>
+          </div>
+          <div class="polaroid-slide">
+            <img src="images/daily3.jpg" alt="Sketch" />
+            <div class="polaroid-caption">SunPatiens<small> School Garden · 2026 May</small></div>
+          </div>
+          <div class="polaroid-slide">
+            <img src="images/daily4.jpg" alt="Piano" />
+            <div class="polaroid-caption">Small sea for a sea turtle<small>Aquarium· 2024 June</small></div>
+          </div>
+          <div class="polaroid-slide">
+            <img src="images/daily5.jpg" alt="Weekend" />
+            <div class="polaroid-caption">Blossom in a Vessel<small>Art on a plate · 2025 July</small></div>
+          </div>
+          <div class="polaroid-slide">
+            <img src="images/daily6.jpg" alt="Family" />
+            <div class="polaroid-caption">Eternal blooms<small>Strawflower· 2024 Janurary</small></div>
+          </div>
+          <div class="polaroid-slide">
+            <img src="images/daily7.jpg" alt="Tennis" />
+            <div class="polaroid-caption">Sound & Light<small>Live Melody · 2025 November</small></div>
+          </div>
+          <div class="polaroid-slide">
+            <img src="images/daily8.jpg" alt="Swimming" />
+            <div class="polaroid-caption">Preparing for concerts<small>Piano Concert · 2024 October</small></div>
+          </div>
+          <div class="polaroid-slide">
+            <img src="images/daily9.jpg" alt="Reading" />
+            <div class="polaroid-caption">Lost in the furry animals<small>Jelly Cat Store · 2024 December</small></div>
+          </div>
+          <div class="polaroid-slide">
+            <img src="images/daily10.jpg" alt="Travel" />
+            <div class="polaroid-caption">Christmas Stories<small>Home made Christmas Tree · 2025 December</small></div>
+          </div>
+          <div class="polaroid-slide">
+            <img src="images/daily11.jpg" alt="Friends" />
+            <div class="polaroid-caption">Golden hour of the day<small>Beijing · 2026 Janurary</small></div>
+          </div>
+          <div class="polaroid-slide">
+            <img src="images/daily12.jpg" alt="Sunset" />
+            <div class="polaroid-caption">Quiet serenity<small>Pigeon's Rest · 2024 June</small></div>
+          </div>
+
+        </div>
+
+        <button class="pc-btn prev" id="pcPrev">&#10094;</button>
+        <button class="pc-btn next" id="pcNext">&#10095;</button>
+      </div>
+
+      <div class="pc-dots" id="pcDots"></div>
+    </div>
+  </section>
+
+  <!-- ===== Activities ===== -->
+  <section id="activities" class="section">
+    <div class="container">
+      <h2 class="section-title">Activities & Interests</h2>
+
+      <div class="activities-grid">
+        <div class="activity-card">
+          <div class="activity-icon">🎨</div>
+          <h3>Painting</h3>
+          <p>5 years of experience in sketching, watercolor, and acrylic. I love capturing emotions through colors.</p>
+          <a href="#art" class="activity-link">View Portfolio →</a>
+        </div>
+
+        <div class="activity-card" id="piano">
+          <div class="activity-icon">🎹</div>
+          <h3>Piano</h3>
+          <p>7 years of playing. Passed ABRSM Grade 8. Performed at school concerts and community events.</p>
+          <button class="video-toggle" onclick="toggleVideo('pianoVideo')">▶ Watch Performance</button>
+          <div class="video-wrapper" id="pianoVideo">
+            <video controls preload="metadata" poster="images/piano-poster.jpg">
+              <source src="videos/piano.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-icon">🎤</div>
+          <h3>Vocal</h3>
+          <p>Member of school choir. Soprano voice. Performed at school music nights and charity events.</p>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-icon">💻</div>
+          <h3>Programming</h3>
+          <p>Python, HTML/CSS, Scratch. Built small games and interactive art projects. Interested in USACO.</p>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-icon">🎾</div>
+          <h3>Tennis</h3>
+          <p>School tennis team member. Love the speed, focus, and friendly competition on the court.</p>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-icon">🥋</div>
+          <h3>Taekwondo</h3>
+          <p>Black belt in training. Taekwondo teaches me discipline, respect, and perseverance.</p>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-icon">✍️</div>
+          <h3>Writing</h3>
+          <p>Enjoy creative writing and journaling. I love turning daily thoughts into short stories.</p>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-icon">🏊</div>
+          <h3>Swimming</h3>
+          <p>Swim for both fitness and fun. It helps me relax and build stamina after a busy day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Art Portfolio ===== -->
+  <section id="art" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Art Portfolio</h2>
+      <p class="section-intro">
+        I started drawing at age 8. Below are some of my works, organized by theme and medium.
+      </p>
+
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="images/art1.jpg" alt="Artwork 1" />
+          <div class="gallery-caption-box"><h4>Morning Light</h4><p>Watercolor · 2024</p></div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/art2.jpg" alt="Artwork 2" />
+          <div class="gallery-caption-box"><h4>Silent Street</h4><p>Sketch · 2024</p></div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/art3.jpg" alt="Artwork 3" />
+          <div class="gallery-caption-box"><h4>Bloom</h4><p>Acrylic · 2023</p></div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/art4.jpg" alt="Artwork 4" />
+          <div class="gallery-caption-box"><h4>Digital Dream</h4><p>Digital · 2024</p></div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/art5.jpg" alt="Artwork 5" />
+          <div class="gallery-caption-box"><h4>Portrait Study</h4><p>Charcoal · 2023</p></div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/art6.jpg" alt="Artwork 6" />
+          <div class="gallery-caption-box"><h4>Ocean Whisper</h4><p>Watercolor · 2024</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Community Service ===== -->
+  <section id="service" class="section">
+    <div class="container">
+      <h2 class="section-title">Community Service</h2>
+
+      <div class="service-list">
+        <div class="service-item">
+          <div class="service-date">Jun – Aug 2024</div>
+          <div class="service-content">
+            <h3>Community Art Teaching</h3>
+            <p class="service-role">Volunteer Art Teacher · Community Center</p>
+            <p>Taught basic sketching and color theory to children aged 6–10, 2 hours per week for 8 weeks. Helped organize a small exhibition of 20+ student works.</p>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-date">2023 – Present</div>
+          <div class="service-content">
+            <h3>Nursing Home Performance</h3>
+            <p class="service-role">Piano & Vocal Volunteer</p>
+            <p>Performed piano and sang for elderly residents during holidays. Organized a small choir with classmates for charity events.</p>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-date">2024</div>
+          <div class="service-content">
+            <h3>Environmental Clean-Up</h3>
+            <p class="service-role">Volunteer · Local Park</p>
+            <p>Participated in weekend park clean-up and recycling campaigns. Helped raise awareness about plastic waste among peers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Annie Zhou. All rights reserved.</p>
+      <p>Contact: <a href="mailto:annie.zhou@example.com">annie.zhou@example.com</a></p>
+    </div>
+  </footer>
+
+  <!-- ===== Lightbox ===== -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img src="" alt="Enlarged photo" id="lightboxImg" />
+  </div>
+
+  <script>
+    // ===== 移动端菜单 =====
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
+
+    // ===== 视频展开 / 收起 =====
+    function toggleVideo(id) {
+      const wrapper = document.getElementById(id);
+      const btn = wrapper.previousElementSibling;
+      wrapper.classList.toggle('active');
+      btn.textContent = wrapper.classList.contains('active')
+        ? '▼ Hide Performance'
+        : '▶ Watch Performance';
+      if (!wrapper.classList.contains('active')) {
+        const video = wrapper.querySelector('video');
+        if (video) video.pause();
+      }
+    }
+
+    // ===== 拍立得轮播 Polaroid Carousel =====
+    const track = document.getElementById('polaroidTrack');
+    const slides = Array.from(track.children);
+    const prevBtn = document.getElementById('pcPrev');
+    const nextBtn = document.getElementById('pcNext');
+    const dotsContainer = document.getElementById('pcDots');
+
+    let currentIndex = 0;
+    let autoPlayInterval = null;
+    const INTERVAL = 4000; // 拍立得切换间隔（毫秒）
+
+    // 生成圆点
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.classList.add('dot');
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    });
+    const dots = Array.from(dotsContainer.children);
+
+    function updateSlides() {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active', 'behind-1', 'behind-2');
+        dots[i].classList.remove('active');
+
+        if (i === currentIndex) {
+          slide.classList.add('active');
+          dots[i].classList.add('active');
+        } else if (i === (currentIndex + 1) % slides.length) {
+          slide.classList.add('behind-1');
+        } else if (i === (currentIndex + 2) % slides.length) {
+          slide.classList.add('behind-2');
+        }
+      });
+    }
+
+    function goToSlide(index) {
+      currentIndex = (index + slides.length) % slides.length;
+      updateSlides();
+    }
+
+    function nextSlide() { goToSlide(currentIndex + 1); }
+    function prevSlide() { goToSlide(currentIndex - 1); }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayInterval = setInterval(nextSlide, INTERVAL);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
+      }
+    }
+
+    nextBtn.addEventListener('click', () => { nextSlide(); startAutoPlay(); });
+    prevBtn.addEventListener('click', () => { prevSlide(); startAutoPlay(); });
+
+    // 鼠标悬停暂停
+    const carousel = document.querySelector('.polaroid-carousel');
+    carousel.addEventListener('pointerenter', stopAutoPlay);
+    carousel.addEventListener('pointerleave', startAutoPlay);
+
+    // 点击拍立得 → Lightbox 放大
+    slides.forEach(slide => {
+      slide.addEventListener('click', () => {
+        const img = slide.querySelector('img');
+        lightboxImg.src = img.src;
+        lightbox.classList.add('active');
+      });
+    });
+
+    updateSlides();
+    startAutoPlay();
+
+    // ===== Lightbox =====
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    lightboxClose.addEventListener('click', () => lightbox.classList.remove('active'));
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) lightbox.classList.remove('active');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') lightbox.classList.remove('active');
+    });
+
+    // ===== 滚动淡入动画 =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.activity-card, .gallery-item, .service-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    // ===== 导航栏滚动阴影 =====
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      navbar.style.boxShadow = window.scrollY > 50
+        ? '0 4px 20px rgba(15,44,76,0.08)'
+        : 'none';
+    });
+  </script>
+</body>
+</html>
